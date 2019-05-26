@@ -50,6 +50,8 @@ spec:
           volumeMounts:
           - name: jmx-config
             mountPath: /etc/jmx-kafka-rest
+          - name: secrets-vol
+            mountPath: /etc/kafka/secrets
         {{- end }}
         - name: {{ template "cp-kafka-rest.name" . }}-server
           image: "{{ .Values.image }}:{{ .Values.imageTag }}"
@@ -88,6 +90,9 @@ spec:
 {{ toYaml .Values.imagePullSecrets | indent 8 }}
       {{- end }}
       volumes:
+      - name: secrets-vol
+        secret:
+          secretName: ssl-config
       {{- if .Values.prometheus.jmx.enabled }}
       - name: jmx-config
         configMap:

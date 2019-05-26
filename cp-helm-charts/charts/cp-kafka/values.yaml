@@ -7,7 +7,7 @@
 ## ------------------------------------------------------
 
 ## Number of Kafka brokers
-brokers: 3
+brokers: 1
 
 ## Image Info
 ## ref: https://hub.docker.com/r/confluentinc/cp-kafka/
@@ -50,7 +50,7 @@ configurationOverrides:
   # "advertised.listeners": |-
   # EXTERNAL://${HOST_IP}:$((31090 + ${KAFKA_BROKER_ID}))
   "listener.security.protocol.map": |-
-   PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
+   PLAINTEXT:PLAINTEXT,SSL:SSL,EXTERNAL:SSL 
 
 ## Additional env variables
 customEnv: {}
